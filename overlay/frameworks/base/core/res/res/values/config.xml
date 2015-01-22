@@ -148,7 +148,6 @@
     <integer name="config_shutdownBatteryTemperature">600</integer>
 
     <!-- Close low battery warning when battery level reaches this value -->
-    <integer name="config_lowBatteryCloseWarningLevel">15</integer>
 
     <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>
@@ -188,7 +187,6 @@
     <bool name="config_speed_up_audio_on_mt_calls">false</bool>
 
     <!-- Enable flashlight -->
-    <bool name="config_enableTorch">true</bool>
 
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">true</bool>
@@ -319,6 +317,11 @@
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
     <integer name="config_doubleTapOnHomeBehavior">0</integer>
+
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">5</integer>
+    <!--  Whether Multiuser UI should be shown -->
+    <bool name="config_enableMultiUserUI">true</bool>
 
     <!-- Performance profiles -->
     <string name="config_perf_profile_prop">sys.perf.profile</string>

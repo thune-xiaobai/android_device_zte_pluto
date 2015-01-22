@@ -23,10 +23,18 @@ TARGET_USE_TEGRA_BIONIC_OPTIMIZATION := true
 TARGET_USE_TEGRA11_MEMCPY_OPTIMIZATION := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
+# defines to support legacy blobs
+COMMON_GLOBAL_CFLAGS += \
+    -DADD_LEGACY_SET_POSITION_SYMBOL \
+    -DADD_LEGACY_MEMORY_DEALER_CONSTRUCTOR_SYMBOL \
+    -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
+
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
+COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB
 BOARD_USE_TINYALSA_AUDIO := true
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
+USE_LEGACY_AUDIO_POLICY := 1
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/zte/pluto
@@ -39,7 +47,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 # File system
 TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 9437184
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 805306368
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 3221225472
 BOARD_CACHEIMAGE_PARTITION_SIZE := 805306368
@@ -67,6 +75,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 BOARD_USE_SKIA_LCDTEXT := true
 BOARD_HAVE_PIXEL_FORMAT_INFO := true
 
+#LOGD
+TARGET_USES_LOGD := false
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -92,25 +103,25 @@ WIFI_DRIVER_FW_PATH_STA     := "/vendor/firmware/bcm43341/fw_bcmdhd.bin"
 WIFI_DRIVER_MODULE_DEVICE   := bcmdhd
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-   $(COMMON_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#   $(COMMON_PATH)/sepolicy
 
 # The list below is order dependent
-BOARD_SEPOLICY_UNION := \
-    file_contexts \
-    genfs_contexts \
-    app.te \
-    bdaddwriter.te \
-    device.te \
-    drmserver.te \
-    init_shell.te \
-    file.te \
-    sensors_config.te \
-    system.te \
-    zygote.te \
-    healthd.te \
-    domain.te \
-    ueventd.te
+#BOARD_SEPOLICY_UNION := \
+#    file_contexts \
+#    genfs_contexts \
+#    app.te \
+#    bdaddwriter.te \
+#    device.te \
+#    drmserver.te \
+#    init_shell.te \
+#    file.te \
+#    sensors_config.te \
+#    system.te \
+#    zygote.te \
+#    healthd.te \
+#    domain.te \
+#    ueventd.te
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := pluto,u988s,U988S

@@ -105,7 +105,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
-    audio.usb.default \
     audio.r_submix.default \
     libaudioutils \
     tinycap \
@@ -143,7 +142,10 @@ PRODUCT_COPY_FILES += \
     device/zte/pluto/misc/libpowerservice.so:system/lib/libpowerservice.so
 
 PRODUCT_PACKAGES += \
-    libnetcmdiface
+    libnetcmdiface \
+    libwvm \
+    wpa_supplicant \
+    p2p_supplicant
 
 # Charger
 PRODUCT_PACKAGES += \
