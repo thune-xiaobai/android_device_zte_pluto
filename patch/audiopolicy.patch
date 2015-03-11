@@ -26,10 +26,10 @@ index bb19830..f728723 100644
 +                       int headset_state = 0;
 +                       fp = fopen("/sys/class/switch/h2w/state","rb");
 +                       if (NULL == fp){
-+                               LOGV("getDeviceForStrategy() can't open file to read the state of headset");
++                               ALOGV("getDeviceForStrategy() can't open file to read the state of headset");
 +                       }else {
 +                               fscanf(fp, "%d", &headset_state);
-+                               LOGV("getDeviceForStrategy() read the state of headset %d",headset_state);
++                               ALOGV("getDeviceForStrategy() read the state of headset %d",headset_state);
 +                               fclose(fp);
 +                       }
 +                               if(1 == headset_state){
@@ -99,4 +99,16 @@ index bb19830..f728723 100644
      switch (inputSource) {
      case AUDIO_SOURCE_VOICE_UPLINK:
        if (mAvailableInputDevices & AUDIO_DEVICE_IN_VOICE_CALL) {
+
+diff --git a/include/hardware_legacy/AudioPolicyManagerBase.h b/include/hardware_legacy/AudioPolicyManagerBase.h
+index 5ba09f1..8ec263f 100644
+--- a/hardware/libhardware_legacy/include/hardware_legacy/AudioPolicyManagerBase.h
++++ b/hardware/libhardware_legacy/include/hardware_legacy/AudioPolicyManagerBase.h
+@@ -559,6 +559,7 @@ protected:
+                                               // (must be in mAttachedOutputDevices)
+         bool mSpeakerDrcEnabled;// true on devices that use DRC on the DEVICE_CATEGORY_SPEAKER path
+                                 // to boost soft sounds, used to adjust volume curves accordingly
++       bool mBootRing;
+ 
+         Vector <HwModule *> mHwModules;
 
