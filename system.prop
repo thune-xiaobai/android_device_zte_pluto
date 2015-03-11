@@ -51,4 +51,9 @@ persist.sys.fast.camera.mode=1
 #add by liutao for limit launch app when battary less than 10%
 persist.sys.battery.lowpower=0
 
+gsm.version.baseband=MBV1.0
+
+#ro.hwui.disable_scissor_opt=true
+#ro.bq.gpu_to_cpu_unsupported=1
+# don't preload OpenGL in Zygote, the Tegra drivers do not like it
 ro.zygote.disable_gl_preload=true

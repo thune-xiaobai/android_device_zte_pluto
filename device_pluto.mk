@@ -11,18 +11,22 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/zte/pluto/overlay
 
-LOCAL_PATH := device/zte/pluto
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
+#LOCAL_PATH := device/zte/pluto
+#ifeq ($(TARGET_PREBUILT_KERNEL),)
+#	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+#else
+#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+#endif
 
 #PRODUCT_COPY_FILES += \
 #    $(LOCAL_KERNEL):kernel
 
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 #$(call inherit-product, build/target/product/full.mk)
 
@@ -41,6 +45,7 @@ PRODUCT_PACKAGES += \
     init.tegra_pluto.usb.rc \
     fstab.tegra_pluto
 
+# Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -101,13 +106,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/pluto/audio/asound.conf:system/etc/asound.conf \
     device/zte/pluto/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/zte/pluto/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml
+    device/zte/pluto/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml \
+    device/zte/pluto/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
     libaudioutils \
+    libaudio-resampler \
     tinycap \
     tinymix \
     tinyplay
@@ -116,7 +123,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/zte/pluto/gps/gps.conf:system/etc/gps.conf \
     device/zte/pluto/gps/gpsconfigftm.xml:system/etc/gpsconfigftm.xml \
-    device/zte/pluto/gps/gpsconfig.xml:system/etc/gps/gpsconfig.xml
+    device/zte/pluto/gps/gpsconfig.xml:system/etc/gps/gpsconfig.xml 
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -139,8 +146,7 @@ PRODUCT_COPY_FILES += \
 
 #misc
 PRODUCT_COPY_FILES += \
-    device/zte/pluto/misc/init.tegra_pluto.post_fs.sh:system/etc/init.tegra_pluto.post_fs.sh \
-    device/zte/pluto/misc/libpowerservice.so:system/lib/libpowerservice.so
+    device/zte/pluto/misc/init.tegra_pluto.post_fs.sh:system/etc/init.tegra_pluto.post_fs.sh
 
 PRODUCT_PACKAGES += \
     libnetcmdiface
@@ -166,7 +172,7 @@ PRODUCT_PACKAGES += \
 # Common build.props
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=480 \
-    ro.com.google.clientidbase=android-nvidia \
+    drm.service.enabled=true
 
 #chat
 PRODUCT_PACKAGES += \

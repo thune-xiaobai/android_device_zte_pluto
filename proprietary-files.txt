@@ -1,5 +1,7 @@
 bin/akmd8962
+bin/amtbackup
 bin/atcmdsrv
+bin/backupVersionNum
 bin/btmacwriter
 bin/cluster
 bin/cluster_get.sh
@@ -8,6 +10,7 @@ bin/dcc
 bin/gsmmuxd
 bin/hotplug
 bin/input_cfboost_init.sh
+bin/mds
 bin/mount_debugfs.sh
 bin/nvcap_test
 bin/nvcpud
@@ -56,6 +59,7 @@ lib/egl/libGLESv1_CM_tegra_impl.so
 lib/egl/libGLESv1_CM_tegra.so
 lib/egl/libGLESv2_tegra_impl.so
 lib/egl/libGLESv2_tegra.so
+lib/hw/audio_policy.tegra.so
 lib/hw/audio.primary.tegra.so
 lib/hw/camera.tegra.so
 lib/hw/gps.default.so
@@ -140,6 +144,7 @@ lib/libnvwinsys.so
 lib/libnvwsi.so
 lib/libopencv24_tegra.so
 lib/libpowerservice_client.so
+lib/libpowerservice.so
 lib/librm31080.so
 lib/librm_ts_service.so
 lib/libsensors.base.so
