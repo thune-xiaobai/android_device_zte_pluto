@@ -1,0 +1,57 @@
+project frameworks/base/
+diff --git a/core/res/res/values/config.xml b/core/res/res/values/config.xml
+index 1b5201d..777a2f6 100644
+--- a/frameworks/base/core/res/res/values/config.xml
++++ b/frameworks/base/core/res/res/values/config.xml
+@@ -33,6 +33,7 @@
+        <item><xliff:g id="id">nfc</xliff:g></item>
+        <item><xliff:g id="id">tty</xliff:g></item>
+        <item><xliff:g id="id">speakerphone</xliff:g></item>
++       <item><xliff:g id="id">headset</xliff:g></item>
+        <item><xliff:g id="id">mute</xliff:g></item>
+        <item><xliff:g id="id">volume</xliff:g></item>
+        <item><xliff:g id="id">wifi</xliff:g></item>
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarPolicy.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatus
+index 6d39ea5..6fb9c5e 100644
+--- a/frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarPolicy.java
++++ b/frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarPolicy.java
+@@ -103,6 +103,9 @@ public class PhoneStatusBarPolicy {
+             else if (action.equals(TtyIntent.TTY_ENABLED_CHANGE_ACTION)) {
+                 updateTTY(intent);
+             }
++            else if (action.equals(Intent.ACTION_HEADSET_PLUG))  {
++                       updateHeadset(intent);
++            }
+         }
+     };
+ 
+@@ -119,6 +122,7 @@ public class PhoneStatusBarPolicy {
+         filter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+         filter.addAction(TelephonyIntents.ACTION_SIM_STATE_CHANGED);
+         filter.addAction(TtyIntent.TTY_ENABLED_CHANGE_ACTION);
++        filter.addAction(Intent.ACTION_HEADSET_PLUG);
+         mContext.registerReceiver(mIntentReceiver, filter, null, mHandler);
+ 
+         int numPhones = MSimTelephonyManager.getDefault().getPhoneCount();
+@@ -160,6 +164,8 @@ public class PhoneStatusBarPolicy {
+         mService.setIcon("volume", R.drawable.stat_sys_ringer_silent, 0, null);
+         mService.setIconVisibility("volume", false);
+         updateVolume();
++        mService.setIcon("Headset", android.R.drawable.stat_sys_headset, 0, null);
++        mService.setIconVisibility("headset", false);
+     }
+ 
+     private final void updateAlarm(Intent intent) {
+@@ -173,6 +179,11 @@ public class PhoneStatusBarPolicy {
+         mService.setIconVisibility("sync_active", isActive);
+     }
+ 
++    private final void updateHeadset(Intent intent){
++       final boolean mHandsetPlugged = (intent.getIntExtra("state",0) == 1);
++       mService.setIconVisibility("headset", mHandsetPlugged);
++    }
++
+     private final void updateSimState(Intent intent) {
+         IccCardConstants.State simState;
+         String stateExtra = intent.getStringExtra(IccCardConstants.INTENT_KEY_ICC_STATE);
+
