@@ -1,0 +1,29 @@
+diff --git a/media/libmediaplayerservice/MediaPlayerService.cpp b/media/libmediaplayerservice/MediaPlayerService.cpp
+index cd052e6..4d94314 100644
+--- a/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp
++++ b/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp
+@@ -2156,6 +2156,10 @@ void MediaPlayerService::addBatteryData(uint32_t params)
+ }
+ 
+ status_t MediaPlayerService::pullBatteryData(Parcel* reply) {
++    // DoPa (20140228) - if this doesn't look like a valid Parcel*, exit
++    if (!((uint32_t)reply & 0xf0000000))
++        return NO_ERROR;
++
+     Mutex::Autolock lock(mLock);
+ 
+     // audio output devices usage
+diff --git a/services/audioflinger/Configuration.h b/services/audioflinger/Configuration.h
+index bc2038a..10d6ac9 100644
+--- a/frameworks/av/services/audioflinger/Configuration.h
++++ b/frameworks/av/services/audioflinger/Configuration.h
+@@ -21,7 +21,7 @@
+ #define ANDROID_AUDIOFLINGER_CONFIGURATION_H
+ 
+ // uncomment to enable detailed battery usage reporting (not debugged)
+-//#define ADD_BATTERY_DATA
++#define ADD_BATTERY_DATA
+ 
+ // uncomment to enable the audio watchdog
+ //#define AUDIO_WATCHDOG
+
