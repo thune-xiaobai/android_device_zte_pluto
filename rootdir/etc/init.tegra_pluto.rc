@@ -709,6 +709,12 @@ service chargerQuickboot /system/bin/chargerQuickboot
     group system
     disabled
 	oneshot
+
+service charger /charger
+    class charger
+    user root
+    group root
+    oneshot
 	
 # backup the software version that contain the external and internal version to the NV RAM
 service version /system/bin/backupVersionNum
