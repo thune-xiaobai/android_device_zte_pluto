@@ -11,18 +11,22 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/zte/pluto/overlay
 
-LOCAL_PATH := device/zte/pluto
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
+#LOCAL_PATH := device/zte/pluto
+#ifeq ($(TARGET_PREBUILT_KERNEL),)
+#	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+#else
+#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+#endif
 
 #PRODUCT_COPY_FILES += \
 #    $(LOCAL_KERNEL):kernel
 
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 #$(call inherit-product, build/target/product/full.mk)
 
@@ -41,6 +45,7 @@ PRODUCT_PACKAGES += \
     init.tegra_pluto.usb.rc \
     fstab.tegra_pluto
 
+# Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -59,8 +64,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
@@ -93,6 +96,10 @@ PRODUCT_COPY_FILES += \
 
 # Media config
 PRODUCT_COPY_FILES += \
+   frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     device/zte/pluto/media/media_profiles.xml:system/etc/media_profiles.xml \
     device/zte/pluto/media/media_codecs.xml:system/etc/media_codecs.xml \
     device/zte/pluto/media/enctune.conf:system/etc/enctune.conf
@@ -101,12 +108,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/pluto/audio/asound.conf:system/etc/asound.conf \
     device/zte/pluto/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/zte/pluto/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml
+    device/zte/pluto/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml \
+    device/zte/pluto/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
+    audio.usb.default \
     audio.r_submix.default \
     libaudioutils \
+    libaudio-resampler \
     tinycap \
     tinymix \
     tinyplay
@@ -135,17 +145,20 @@ PRODUCT_COPY_FILES += \
     device/zte/pluto/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     device/zte/pluto/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
+PRODUCT_PACKAGES += \
+    libwpa_client \
+    hostapd \
+    dhcpcd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 #misc
 PRODUCT_COPY_FILES += \
-    device/zte/pluto/misc/init.tegra_pluto.post_fs.sh:system/etc/init.tegra_pluto.post_fs.sh \
-    device/zte/pluto/misc/libpowerservice.so:system/lib/libpowerservice.so
+    device/zte/pluto/misc/init.tegra_pluto.post_fs.sh:system/etc/init.tegra_pluto.post_fs.sh
 
 PRODUCT_PACKAGES += \
     libnetcmdiface \
-    libwvm \
-    wpa_supplicant \
-    p2p_supplicant
+    libwvm 
 
 # Charger
 PRODUCT_PACKAGES += \
