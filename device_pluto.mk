@@ -11,15 +11,15 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/zte/pluto/overlay
 
-#LOCAL_PATH := device/zte/pluto
-#ifeq ($(TARGET_PREBUILT_KERNEL),)
-#	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-#else
-#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-#endif
+LOCAL_PATH := device/zte/pluto
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
 
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_KERNEL):kernel
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
 
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -132,7 +132,10 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_COPY_FILES += \
     device/zte/pluto/camera/model_frontal.xml:system/etc/model_frontal.xml \
-    device/zte/pluto/camera/nvcamera.conf:system/etc/nvcamera.conf
+    device/zte/pluto/camera/nvcamera.conf:system/etc/nvcamera.conf \
+    device/zte/pluto/camera/libztebitmaputils.so:system/lib/libztebitmaputils.so \
+    device/zte/pluto/camera/libztecamerafilterfw.so:system/lib/libztecamerafilterfw.so \
+    device/zte/pluto/camera/libztecamerafilterpack_imageproc.so:system/lib/libztecamerafilterpack_imageproc.so
 
 # Wifi
 PRODUCT_COPY_FILES += \
@@ -143,24 +146,25 @@ PRODUCT_COPY_FILES += \
     device/zte/pluto/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     device/zte/pluto/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
-
 #misc
 PRODUCT_COPY_FILES += \
     device/zte/pluto/misc/init.tegra_pluto.post_fs.sh:system/etc/init.tegra_pluto.post_fs.sh
 
 PRODUCT_COPY_FILES += \
-     device/zte/pluto/modules/baseband_usb_chr.ko:system/lib/modules/baseband_usb_chr.ko \
-     device/zte/pluto/modules/baseband-xmm-power2.ko:system/lib/modules/baseband-xmm-power2.ko \
-     device/zte/pluto/modules/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
-     device/zte/pluto/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
-     device/zte/pluto/modules/gps_drv.ko:system/lib/modules/gps_drv.ko \
-     device/zte/pluto/modules/lib80211.ko:system/lib/modules/lib80211.ko \
-     device/zte/pluto/modules/mac80211.ko:system/lib/modules/mac80211.ko \
-     device/zte/pluto/modules/raw_ip_net.ko:system/lib/modules/raw_ip_net.ko \
-     device/zte/pluto/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
-     device/zte/pluto/modules/tcrypt.ko:system/lib/modules/tcrypt.ko
+    device/zte/pluto/modules/baseband_usb_chr.ko:system/lib/modules/baseband_usb_chr.ko \
+    device/zte/pluto/modules/baseband-xmm-power2.ko:system/lib/modules/baseband-xmm-power2.ko \
+    device/zte/pluto/modules/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
+    device/zte/pluto/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
+    device/zte/pluto/modules/gps_drv.ko:system/lib/modules/gps_drv.ko \
+    device/zte/pluto/modules/lib80211.ko:system/lib/modules/lib80211.ko \
+    device/zte/pluto/modules/mac80211.ko:system/lib/modules/mac80211.ko \
+    device/zte/pluto/modules/raw_ip_net.ko:system/lib/modules/raw_ip_net.ko \
+    device/zte/pluto/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
+    device/zte/pluto/modules/tcrypt.ko:system/lib/modules/tcrypt.ko
 
-
+PRODUCT_COPY_FILES += \
+    device/zte/pluto/app/CameraZte.apk:system/priv-app/CameraZte.apk \
+    device/zte/pluto/app/NvCPLSvc.apk:system/priv-app/NvCPLSvc.apk
 
 PRODUCT_PACKAGES += \
     libnetcmdiface
@@ -169,6 +173,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
+
+# NFC packages
+PRODUCT_PACKAGES += \
+    libnfc-nci \
+    libnfc_nci_jni \
+    NfcNci \
+    Tag \
+    com.android.nfc_extras
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
