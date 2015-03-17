@@ -148,6 +148,20 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/pluto/misc/init.tegra_pluto.post_fs.sh:system/etc/init.tegra_pluto.post_fs.sh
 
+PRODUCT_COPY_FILES += \
+     device/zte/pluto/modules/baseband_usb_chr.ko:system/lib/modules/baseband_usb_chr.ko \
+     device/zte/pluto/modules/baseband-xmm-power2.ko:system/lib/modules/baseband-xmm-power2.ko \
+     device/zte/pluto/modules/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
+     device/zte/pluto/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
+     device/zte/pluto/modules/gps_drv.ko:system/lib/modules/gps_drv.ko \
+     device/zte/pluto/modules/lib80211.ko:system/lib/modules/lib80211.ko \
+     device/zte/pluto/modules/mac80211.ko:system/lib/modules/mac80211.ko \
+     device/zte/pluto/modules/raw_ip_net.ko:system/lib/modules/raw_ip_net.ko \
+     device/zte/pluto/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
+     device/zte/pluto/modules/tcrypt.ko:system/lib/modules/tcrypt.ko
+
+
+
 PRODUCT_PACKAGES += \
     libnetcmdiface
 

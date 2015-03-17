@@ -31,9 +31,9 @@ BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/zte/pluto
-TARGET_KERNEL_CONFIG := cyanogenmod_pluto_defconfig
-#TARGET_PREBUILT_KERNEL := device/zte/pluto/kernel
+#TARGET_KERNEL_SOURCE := kernel/zte/pluto
+#TARGET_KERNEL_CONFIG := cyanogenmod_pluto_defconfig
+TARGET_PREBUILT_KERNEL := device/zte/pluto/kernel
 BOARD_KERNEL_CMDLINE := 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
