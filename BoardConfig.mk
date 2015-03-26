@@ -38,10 +38,10 @@ BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 USE_LEGACY_AUDIO_POLICY := 1
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/zte/pluto
-TARGET_KERNEL_CONFIG := cyanogenmod_pluto_defconfig
-#TARGET_PREBUILT_KERNEL := device/zte/pluto/kernel
-BOARD_KERNEL_CMDLINE := 
+#TARGET_KERNEL_SOURCE := kernel/zte/pluto
+#TARGET_KERNEL_CONFIG := cyanogenmod_pluto_defconfig
+TARGET_PREBUILT_KERNEL := device/zte/pluto/kernel
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
