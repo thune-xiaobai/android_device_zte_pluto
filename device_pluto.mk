@@ -177,7 +177,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     libnetcmdiface \
-    libwvm 
+    libwvm \
+    libhealthd.tegra_pluto 
 
 # Charger
 PRODUCT_PACKAGES += \
