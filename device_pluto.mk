@@ -167,7 +167,8 @@ PRODUCT_COPY_FILES += \
     device/zte/pluto/app/NvCPLSvc.apk:system/priv-app/NvCPLSvc.apk
 
 PRODUCT_PACKAGES += \
-    libnetcmdiface
+    libnetcmdiface \
+    libhealthd.tegra_pluto
 
 # Charger
 PRODUCT_PACKAGES += \
