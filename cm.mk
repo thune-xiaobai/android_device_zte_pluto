@@ -10,6 +10,9 @@ TARGET_SCREEN_WIDTH := 1080
 # Inherit some common CyanogenMod stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
+# override CM resource
+PRODUCT_PACKAGE_OVERLAYS += device/xiaomi/pisces/productoverlay
+
 # Enhanced NFC
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
