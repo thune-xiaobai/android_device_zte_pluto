@@ -70,9 +70,9 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
     # Create GPS folders and set its permissions
-#    mkdir /data/gps
-#    chown gps system /data/gps/
-#    chmod 0770 /data/gps/
+    mkdir /data/gps
+    chown gps system /data/gps/
+    chmod 0770 /data/gps/
 
 on boot
 
