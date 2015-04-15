@@ -111,7 +111,7 @@ PRODUCT_COPY_FILES += \
     device/zte/pluto/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml \
     device/zte/pluto/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml
 
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     device/zte/pluto/modules/baseband_usb_chr.ko:system/lib/modules/baseband_usb_chr.ko \
     device/zte/pluto/modules/baseband-xmm-power2.ko:system/lib/modules/baseband-xmm-power2.ko \
     device/zte/pluto/modules/bcmdhd.ko:system/lib/modules/bcmdhd.ko \

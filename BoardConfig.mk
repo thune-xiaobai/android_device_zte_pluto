@@ -38,9 +38,9 @@ BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 USE_LEGACY_AUDIO_POLICY := 1
 
 # Kernel
-#TARGET_KERNEL_SOURCE := kernel/zte/pluto
-#TARGET_KERNEL_CONFIG := cyanogenmod_pluto_defconfig
-TARGET_PREBUILT_KERNEL := device/zte/pluto/kernel
+TARGET_KERNEL_SOURCE := kernel/zte/pluto
+TARGET_KERNEL_CONFIG := cyanogenmod_pluto_defconfig
+#TARGET_PREBUILT_KERNEL := device/zte/pluto/kernel
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -105,8 +105,8 @@ WIFI_DRIVER_FW_PATH_STA     := "/vendor/firmware/bcm43341/fw_bcmdhd.bin"
 WIFI_DRIVER_MODULE_DEVICE   := bcmdhd
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#   $(COMMON_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += \
+   $(COMMON_PATH)/sepolicy
 
 # The list below is order dependent
 #BOARD_SEPOLICY_UNION := \
