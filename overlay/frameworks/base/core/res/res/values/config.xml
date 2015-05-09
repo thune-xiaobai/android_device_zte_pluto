@@ -215,7 +215,6 @@
     <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
     <!-- bool value to for enabling motion accelerometer -->
-    <bool name="use_motion_accel">true</bool>
 
     <!-- Enable overlay for all location components. -->
     <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
@@ -273,11 +272,9 @@
     <integer name="config_virtualKeyQuietTimeMillis">100</integer>
     <!-- Configuartion to support 7bit Ascii encoding and decoding
          for long messages. -->
-    <bool name="config_ascii_7bit_support_for_long_message">true</bool>
 
     <!-- Configuration to restart radio upon PDP_DEACTIVATE with
          error cause as Regular deactivation(36). -->
-    <bool name="config_radio_reset_on_regular_deactivation">false</bool>
 
     <!-- MMS user agent string -->
     <string name="config_mms_user_agent" translatable="false">Android-Mms/2.0</string>
@@ -310,8 +307,6 @@
     -->
     <integer name="config_longPressOnHomeBehavior">2</integer>
 
-    <integer name="config_longPressOnMenuBehavior">3</integer>
-
     <!-- Control the behavior when the user double-taps the home button.
             0 - Nothing
             1 - Menu
@@ -330,7 +325,5 @@
     <bool name="config_enableMultiUserUI">true</bool>
 
     <!-- Performance profiles -->
-    <string name="config_perf_profile_prop">sys.perf.profile</string>
-    <string name="config_perf_profile_default_entry">1</string>
 
 </resources>

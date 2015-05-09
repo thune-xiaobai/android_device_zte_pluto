@@ -145,6 +145,7 @@ lib/libnvwsi.so
 lib/libopencv24_tegra.so
 lib/libpowerservice_client.so
 lib/libpowerservice.so
+lib/libprodtest.so
 lib/librm31080.so
 lib/librm_ts_service.so
 lib/libsensors.base.so

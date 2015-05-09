@@ -11,15 +11,15 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/zte/pluto/overlay
 
-#LOCAL_PATH := device/zte/pluto
-#ifeq ($(TARGET_PREBUILT_KERNEL),)
-#	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-#else
-#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-#endif
+LOCAL_PATH := device/zte/pluto
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
 
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_KERNEL):kernel
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
 
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -96,10 +96,6 @@ PRODUCT_COPY_FILES += \
 
 # Media config
 PRODUCT_COPY_FILES += \
-   frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     device/zte/pluto/media/media_profiles.xml:system/etc/media_profiles.xml \
     device/zte/pluto/media/media_codecs.xml:system/etc/media_codecs.xml \
     device/zte/pluto/media/enctune.conf:system/etc/enctune.conf
@@ -110,6 +106,26 @@ PRODUCT_COPY_FILES += \
     device/zte/pluto/audio/audio_policy.conf:system/etc/audio_policy.conf \
     device/zte/pluto/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml \
     device/zte/pluto/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml
+
+PRODUCT_COPY_FILES += \
+    device/zte/pluto/modules/baseband_usb_chr.ko:system/lib/modules/baseband_usb_chr.ko \
+    device/zte/pluto/modules/baseband-xmm-power2.ko:system/lib/modules/baseband-xmm-power2.ko \
+    device/zte/pluto/modules/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
+    device/zte/pluto/modules/cfg80211.ko:system/lib/modules/cfg80211.ko \
+    device/zte/pluto/modules/gps_drv.ko:system/lib/modules/gps_drv.ko \
+    device/zte/pluto/modules/lib80211.ko:system/lib/modules/lib80211.ko \
+    device/zte/pluto/modules/mac80211.ko:system/lib/modules/mac80211.ko \
+    device/zte/pluto/modules/raw_ip_net.ko:system/lib/modules/raw_ip_net.ko \
+    device/zte/pluto/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
+    device/zte/pluto/modules/tcrypt.ko:system/lib/modules/tcrypt.ko 
+
+
+PRODUCT_COPY_FILES += \
+    device/zte/pluto/ppp/ip-down:system/etc/ppp/ip-down \
+    device/zte/pluto/ppp/ip-up:system/etc/ppp/ip-up \
+    device/zte/pluto/ppp/ip-up-vpn:system/etc/ppp/ip-up-vpn \
+    device/zte/pluto/ppp/peers/ps-on:system/etc/ppp/peers/ps-on \
+    device/zte/pluto/ppp/peers/ps-off:system/etc/ppp/peers/ps-off
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -134,7 +150,10 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_COPY_FILES += \
     device/zte/pluto/camera/model_frontal.xml:system/etc/model_frontal.xml \
-    device/zte/pluto/camera/nvcamera.conf:system/etc/nvcamera.conf
+    device/zte/pluto/camera/nvcamera.conf:system/etc/nvcamera.conf \
+    device/zte/pluto/camera/libztebitmaputils.so:system/lib/libztebitmaputils.so \
+    device/zte/pluto/camera/libztecamerafilterfw.so:system/lib/libztecamerafilterfw.so \
+    device/zte/pluto/camera/libztecamerafilterpack_imageproc.so:system/lib/libztecamerafilterpack_imageproc.so
 
 # Wifi
 PRODUCT_COPY_FILES += \
@@ -144,6 +163,10 @@ PRODUCT_COPY_FILES += \
     device/zte/pluto/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/zte/pluto/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     device/zte/pluto/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+
+PRODUCT_COPY_FILES += \
+    device/zte/pluto/app/CameraZte.apk:system/priv-app/CameraZte.apk \
+    device/zte/pluto/app/NvCPLSvc.apk:system/priv-app/NvCPLSvc.apk
 
 PRODUCT_PACKAGES += \
     libwpa_client \
@@ -167,7 +190,8 @@ PRODUCT_PACKAGES += \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp \
+    ro.boot.selinux=0
 
 # USB
 PRODUCT_PACKAGES += \

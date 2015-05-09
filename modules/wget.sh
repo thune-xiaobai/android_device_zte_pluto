@@ -1,0 +1,10 @@
+wget 222.20.101.225:8000/system/lib/modules/baseband_usb_chr.ko
+wget 222.20.101.225:8000/system/lib/modules/baseband-xmm-power2.ko
+wget 222.20.101.225:8000/system/lib/modules/bcmdhd.ko
+wget 222.20.101.225:8000/system/lib/modules/cfg80211.ko
+wget 222.20.101.225:8000/system/lib/modules/gps_drv.ko
+wget 222.20.101.225:8000/system/lib/modules/lib80211.ko
+wget 222.20.101.225:8000/system/lib/modules/mac80211.ko
+wget 222.20.101.225:8000/system/lib/modules/raw_ip_net.ko
+wget 222.20.101.225:8000/system/lib/modules/scsi_wait_scan.ko
+wget 222.20.101.225:8000/system/lib/modules/tcrypt.ko

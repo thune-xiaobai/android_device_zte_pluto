@@ -10,7 +10,7 @@ keyguard.no_require_sim=true
 persist.tegra.nvmmlite = 1
 persist.wlan.ti.calibrated = 0
 ro.ril.wake_lock_timeout=200000
-ro.sf.override_null_lcd_density = 1
+#ro.sf.override_null_lcd_density = 1
 
 # add by denglibin ++
 zte.service.atcmdsrv.enable=1

@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_pluto.mk
+    $(LOCAL_DIR)/omni_pluto.mk
